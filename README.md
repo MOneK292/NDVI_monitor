@@ -1,210 +1,175 @@
 # NDVI Monitor
 
-Программный комплекс для автоматизированного мониторинга состояния зеленых
-насаждений Приморского района Санкт-Петербурга по данным Sentinel-2.
+<p align="center">
+  <img src="docs/assets/banner.png" alt="NDVI Monitor Banner" width="100%">
+</p>
 
-## Возможности
+<p align="center">
+  <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/Python-3.12-blue?logo=python&logoColor=white" alt="Python 3.12"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT"></a>
+  <img src="https://img.shields.io/badge/GIS-Geospatial-success" alt="GIS">
+  <img src="https://img.shields.io/badge/Remote--Sensing-Sentinel--2-orange" alt="Remote Sensing">
+  <img src="https://img.shields.io/badge/Data-Sentinel--2%20L2A-red" alt="Sentinel-2">
+</p>
 
-- проверка входных GeoTIFF и векторной границы исследования;
-- поддержка границ в форматах GeoPackage (`.gpkg`), ESRI Shapefile (`.shp`) и
-  GeoJSON (`.geojson`);
-- автоматическое определение варианта входных данных: каналы Sentinel-2 или
-  готовые NDVI;
-- автоматическое определение готовых NDVI как Float32 или Int16 x 10000;
-- учет NoData, rasterio mask, scale и offset;
-- явная целевая сетка: `EPSG:32636`, разрешение 10 м, фиксированный origin;
-- reprojection через `rasterio.warp.reproject` и обрезка по границе района;
-- общая маска валидных пикселей `valid2015 AND valid2025`;
-- сценарный прогноз NDVI: цепи Маркова для квот переходов, кластеризация
-  динамики и карта потенциала изменений по всем полигонам `change_polygons.gpkg`;
-- матрица переходов между классами NDVI;
-- поиск крупнейших участков деградации и улучшения;
-- единый научный стиль карт и диаграмм: 300 dpi, белый фон, профессиональные
-  палитры, унифицированные легенды, цветовые шкалы, масштаб и северная стрелка;
-- общий автоматический диапазон отображения для карт NDVI 2015, 2025 и 2035,
-  рассчитанный по валидным значениям без влияния редких выбросов;
-- экспорт GeoTIFF, PNG, Excel, GeoPackage и Word;
-- Word-отчет через `python-docx`;
-- графический интерфейс на `tkinter`;
-- приемочная проверка через `verify_pipeline.py`.
+<p align="center">
+  <b>Sentinel-2 based GIS toolkit for automated NDVI analysis, urban vegetation monitoring, and spatial forecasting.</b>
+</p>
 
-## Входные данные
+---
 
-Положите файлы в папку `input/`.
+## Project Status
 
-В папке должен быть ровно один файл границы исследования:
+**Active Development**
 
-```text
-*.gpkg
-*.shp
-*.geojson
-```
+The project was developed as part of a GIS research workflow (academic diploma) and is actively maintained as an open-source geospatial analysis tool for environmental and urban green infrastructure assessment.
 
-Если используется Shapefile, рядом должны находиться обязательные файлы
-`.shp`, `.shx`, `.dbf`, `.prj`.
+---
 
-Вариант 1, исходные каналы Sentinel-2:
+## Key Features
+
+- **Automated NDVI Calculation**: Support for Sentinel-2 raw optical bands (`B04` / `B08`) and pre-calculated NDVI rasters (Float32 & Int16 $\times$ 10000).
+- **Explicit Raster Alignment & Reprojection**: Target grid snapping (`EPSG:32636`, 10 m resolution) and boundary vector clipping (`.gpkg`, `.shp`, `.geojson`).
+- **Common Validity Masking**: Strict intersection of multi-temporal valid data masks (`valid2015 AND valid2025`).
+- **Vegetation & Change Classification**: Stratification of canopy condition into 5 categorical stages and Delta NDVI change detection.
+- **Data-Driven Spatial Forecasting**: CA-Markov transition matrices combined with polygon clustering and adaptive distance-decay influence surfaces for scenario simulation.
+- **Cartographic-Grade Visualizations**: Standalone high-resolution maps (300 DPI, North arrow, scale bars, percentile-based robust stretch).
+- **Automated Enterprise Reporting**: Instant generation of structured Excel summaries (`.xlsx`) and formal analytical reports in Word (`.docx`).
+- **Desktop GUI & CLI Modes**: Easy-to-use Tkinter interface alongside an automated CLI pipeline.
+
+---
+
+## Workflow Architecture
 
 ```text
-B04_2015.tif
-B08_2015.tif
-B04_2025.tif
-B08_2025.tif
+       Sentinel-2 Bands / Pre-computed NDVI
+                         │
+                         ▼
+                   [1. Loader]
+            (Metadata & CRS Validation)
+                         │
+                         ▼
+                [2. Raster Align]
+        (Reprojection, Snap-to-Grid, Crop)
+                         │
+                         ▼
+             [3. NDVI & Common Mask]
+        (NIR-RED / NIR+RED & Temporal Mask)
+                         │
+                         ▼
+               [4. Classification]
+        (5-Class Vegetation Canopy Tiers)
+                         │
+                         ▼
+              [5. Change Detection]
+        (Delta NDVI & Polygonization)
+                         │
+                         ▼
+                [6. Statistics]
+       (Transition Matrix & Area Accounting)
+                         │
+                         ▼
+                 [7. Forecasting]
+        (Markov Quotas & Spatial Influence)
+                         │
+                         ▼
+              [8. Reports & Visuals]
+        (GeoTIFF, PNG Maps, Excel, Word)
 ```
 
-Вариант 2, готовые NDVI:
+---
 
-```text
-ndvi2015.tif
-ndvi2025.tif
-```
+## Tech Stack
 
-Также допускается ровно два файла вида `ndvi*.tif`. Если в именах есть годы
-2015 и 2025, они используются для сопоставления. Иначе файлы сортируются по
-имени: первый считается базовым годом, второй целевым.
+| Category | Libraries / Tools |
+| :--- | :--- |
+| **GIS & Geodata** | `rasterio`, `geopandas`, `shapely`, `pyproj`, `pyogrio` |
+| **Data Processing & ML** | `numpy`, `pandas`, `scipy` |
+| **Visuals & Cartography**| `matplotlib` |
+| **Report Automation** | `openpyxl`, `python-docx` |
+| **UI & CLI** | `tkinter`, `argparse`, `tqdm` |
 
-Если доступны оба варианта, программа использует исходные каналы и сама
-рассчитывает NDVI.
+---
 
-## Установка
+## Case Study
+
+**Study Area**: Primorsky District, Saint Petersburg
+
+- **Area**: 109.87 km²
+- **Population**: ~715,000 residents
+- **Observation Period**: 2015 – 2025 (Forecast to 2035)
+- **Data Source**: Sentinel-2 (L2A Bottom-Of-Atmosphere reflectance)
+- **Target Spatial Resolution**: 10 m / pixel
+
+### Typical Vegetation Class Distribution
+
+| Class ID | NDVI Range | Description | Typical Land Cover |
+| :---: | :---: | :--- | :--- |
+| **1** | $< 0.10$ | Водные объекты и открытый грунт | Water bodies, quarries, bare soil |
+| **2** | $0.10 - 0.25$ | Искусственные покрытия / застройка | Impervious surfaces, dense urban built-up |
+| **3** | $0.25 - 0.45$ | Разреженная / нарушенная растительность | Sparse lawns, disturbed soil, ruderal vegetation |
+| **4** | $0.45 - 0.65$ | Умеренная растительность | Urban parks, residential greenery, shrubs |
+| **5** | $> 0.65$ | Плотный здоровый древостой | Dense forest tracts, protected conservation areas |
+
+---
+
+## Quick Start
+
+### Installation
 
 ```bash
+git clone https://github.com/MOneK292/NDVI_monitor.git
+cd NDVI_monitor
 python -m venv .venv
-.venv\Scripts\activate
+.venv\Scripts\activate       # Windows
+# source .venv/bin/activate  # Linux / macOS
 pip install -r requirements.txt
 ```
 
-Проект рассчитан на Python 3.12. Версии библиотек закреплены в
-`requirements.txt` для воспроизводимости.
+*Requirements: Python 3.12 (64-bit recommended).*
 
-## Запуск
+### Running the Pipeline
 
-Консольный режим:
-
-```bash
-python main.py
-```
-
-С явным указанием папки входных данных:
-
-```bash
-python main.py --input C:\path\to\input
-```
-
-Графический интерфейс:
-
+**1. Graphical Interface (GUI):**
 ```bash
 python main.py --gui
 ```
 
-Полная приемочная проверка с запуском pipeline:
+**2. CLI Pipeline:**
+```bash
+python main.py --input ./input
+```
 
+**3. Acceptance Verification Test:**
 ```bash
 python verify_pipeline.py
 ```
 
-Проверка уже созданных результатов без повторного расчета:
+---
 
-```bash
-python verify_pipeline.py --skip-run
-```
+## Input Data Layout
 
-## Результаты
+Place input files into the `input/` folder:
 
-- `output/rasters/` - GeoTIFF с NDVI, общей маской, классификациями,
-  Delta NDVI, прогнозом и `change_polygons.gpkg`;
-- `output/figures/` - карты и диаграммы PNG;
-- `output/tables/ndvi_monitor_results.xlsx` - сводные таблицы статистики;
-- `output/tables/transition_matrix.xlsx` - матрица переходов классов NDVI;
-- `output/tables/largest_changes.xlsx` - крупнейшие участки изменений;
-- `output/reports/ndvi_monitor_report.docx` - Word-отчет;
-- `logs/monitor.log` - журнал операций.
+- **1 Vector boundary**: `*.gpkg`, `*.shp`, or `*.geojson` (sample included: `input/Primorsky.gpkg`).
+- **Sentinel-2 Bands (Option 1)**:
+  - `B04_2015.tif`, `B08_2015.tif`
+  - `B04_2025.tif`, `B08_2025.tif`
+- **Or Pre-calculated NDVI (Option 2)**:
+  - `ndvi2015.tif`, `ndvi2025.tif`
 
-## Методика
+---
 
-NDVI рассчитывается по формуле:
+## Output Structure
 
-```text
-NDVI = (NIR - RED) / (NIR + RED)
-```
+All outputs are saved to `output/`:
+- `output/rasters/` — GeoTIFFs (aligned NDVI, valid mask, delta NDVI, forecast, and `change_polygons.gpkg`).
+- `output/figures/` — High-resolution 300 DPI publication-ready PNG maps and charts.
+- `output/tables/` — Excel summary reports, transition matrices, and largest change rankings.
+- `output/reports/` — Formal Word report (`ndvi_monitor_report.docx`).
 
-Готовые NDVI автоматически проверяются как физические значения `[-1; 1]` или
-как значения, масштабированные на `10000`. Если формат определить невозможно,
-обработка завершается ошибкой.
+---
 
-Все расчеты сравнения выполняются только по общей валидной области:
+## License
 
-```text
-valid_mask = valid2015 AND valid2025
-```
-
-Диапазоны цветовых шкал не задаются как фиксированные `[-1; 1]`. Для общей
-серии NDVI используются 5-й и 99-й процентили объединенных валидных значений
-2015 и 2025 годов. Для Delta NDVI используются 2-й и 98-й процентили, а ноль
-остается строгим центром дивергентной шкалы. Это изменяет только визуальное
-отображение и не обрезает значения исходных GeoTIFF.
-
-Прогноз на 2035 год не использует линейную экстраполяцию. Матрица переходов
-2015-2025 нормализуется до вероятностей цепи Маркова и определяет квоты
-переходов классов NDVI. Все полигоны изменений автоматически описываются
-геометрическими, спектральными и контекстными признаками, кластеризуются и
-получают вес влияния. По этим весам строится поверхность потенциала изменений:
-вклад каждого полигона затухает с расстоянием, а при перекрытии используется
-максимальное влияние.
-
-Сценарии динамики выделяются автоматически по кластерам пикселей и полигонов:
-новая застройка получает ограниченное восстановление NDVI, стабильная городская
-и зеленая территория сохраняются почти без изменений, а дальнейшая деградация
-распределяется рядом с существующими изменениями с учетом оставшейся емкости
-пикселя, соседней потери NDVI и локальной вариативности. Уже сильно измененные
-низкорастительные пиксели не деградируют повторно; стабильная городская ткань
-рядом с зелеными зонами получает небольшой прирост NDVI.
-
-Площадь классов вычисляется как площадь пикселя целевой сетки, умноженная на
-количество валидных пикселей. На границе полигона используется пиксельная
-аппроксимация после маскирования по границе района.
-
-## Классификация
-
-Шкала NDVI:
-
-| Класс | Интервал |
-| --- | --- |
-| 1 | `< 0.10` |
-| 2 | `0.10-0.25` |
-| 3 | `0.25-0.45` |
-| 4 | `0.45-0.65` |
-| 5 | `> 0.65` |
-
-Шкала Delta NDVI:
-
-| Класс | Интервал | Интерпретация |
-| --- | --- | --- |
-| 1 | `< -0.20` | значительное ухудшение |
-| 2 | `-0.20...-0.05` | умеренное ухудшение |
-| 3 | `-0.05...0.05` | без изменений |
-| 4 | `0.05...0.20` | улучшение |
-| 5 | `>= 0.20` | значительное улучшение |
-
-## Архитектура
-
-- `main.py` - CLI и запуск GUI;
-- `verify_pipeline.py` - приемочная проверка pipeline и экспортов;
-- `config.py` - пути, годы, пороги, сетка и параметры методики;
-- `modules/loader.py` - поиск и проверка входных данных;
-- `modules/align.py` - reprojection, alignment, clipping;
-- `modules/ndvi.py` - расчет и нормализация NDVI;
-- `modules/mask.py` - общая валидная маска;
-- `modules/classify.py` - классификации NDVI и изменений;
-- `modules/delta.py` - Delta NDVI;
-- `modules/statistics.py` - площади, статистики, матрица переходов;
-- `modules/changes.py` - полигоны крупнейших изменений;
-- `modules/forecast.py` - сценарный Markov-прогноз с автоматической
-  кластеризацией динамики, весами полигонов и пространственной поверхностью
-  потенциала изменений;
-- `modules/visualization.py` - PNG-карты и диаграммы;
-- `modules/export_excel.py` - Excel-экспорт;
-- `modules/report.py` - Word-отчет через `python-docx`;
-- `modules/pipeline.py` - последовательное выполнение всех этапов;
-- `modules/gui.py` - tkinter-интерфейс;
-- `modules/utils.py` - общие функции IO и логирования.
+This project is open source and available under the terms of the [MIT License](LICENSE).
