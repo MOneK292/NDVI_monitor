@@ -7,115 +7,119 @@
 <p align="center">
   <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/Python-3.12-blue?logo=python&logoColor=white" alt="Python 3.12"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT"></a>
-  <img src="https://img.shields.io/badge/GIS-Geospatial-success" alt="GIS">
-  <img src="https://img.shields.io/badge/Remote--Sensing-Sentinel--2-orange" alt="Remote Sensing">
-  <img src="https://img.shields.io/badge/Data-Sentinel--2%20L2A-red" alt="Sentinel-2">
+  <img src="https://img.shields.io/badge/GIS-Геоданные-success" alt="GIS">
+  <img src="https://img.shields.io/badge/ДЗЗ-Sentinel--2-orange" alt="Remote Sensing">
+  <img src="https://img.shields.io/badge/Данные-Sentinel--2%20L2A-red" alt="Sentinel-2">
 </p>
 
 <p align="center">
-  <b>Sentinel-2 based GIS toolkit for automated NDVI analysis, urban vegetation monitoring, and spatial forecasting.</b>
+  <b>Программный комплекс автоматизированного мониторинга состояния зеленых насаждений, анализа динамики NDVI и пространственного прогнозирования по спутниковым данным Sentinel-2.</b>
+</p>
+
+<p align="center">
+  <b>Русский</b> | <a href="README_EN.md">English</a>
 </p>
 
 ---
 
-## Project Status
+## Статус проекта
 
-**Active Development**
+**Активная разработка**
 
-The project was developed as part of a GIS research workflow (academic diploma) and is actively maintained as an open-source geospatial analysis tool for environmental and urban green infrastructure assessment.
-
----
-
-## Key Features
-
-- **Automated NDVI Calculation**: Support for Sentinel-2 raw optical bands (`B04` / `B08`) and pre-calculated NDVI rasters (Float32 & Int16 $\times$ 10000).
-- **Explicit Raster Alignment & Reprojection**: Target grid snapping (`EPSG:32636`, 10 m resolution) and boundary vector clipping (`.gpkg`, `.shp`, `.geojson`).
-- **Common Validity Masking**: Strict intersection of multi-temporal valid data masks (`valid2015 AND valid2025`).
-- **Vegetation & Change Classification**: Stratification of canopy condition into 5 categorical stages and Delta NDVI change detection.
-- **Data-Driven Spatial Forecasting**: CA-Markov transition matrices combined with polygon clustering and adaptive distance-decay influence surfaces for scenario simulation.
-- **Cartographic-Grade Visualizations**: Standalone high-resolution maps (300 DPI, North arrow, scale bars, percentile-based robust stretch).
-- **Automated Enterprise Reporting**: Instant generation of structured Excel summaries (`.xlsx`) and formal analytical reports in Word (`.docx`).
-- **Desktop GUI & CLI Modes**: Easy-to-use Tkinter interface alongside an automated CLI pipeline.
+Программный комплекс разработан в рамках научно-исследовательской работы (ВКР) и поддерживается как открытый геоинформационный инструмент для экологического анализа и оценки городской зеленой инфраструктуры.
 
 ---
 
-## Workflow Architecture
+## Ключевые возможности
+
+- **Автоматический расчет NDVI**: Поддержка исходных спектральных каналов Sentinel-2 (`B04` / `B08`) и готовых растров NDVI (Float32 или Int16 $\times$ 10000).
+- **Выравнивание и геопривязка (Snap-to-Grid)**: Приведение к явной целевой сетке (`EPSG:32636`, разрешение 10 м) и обрезка по векторным границам района (`.gpkg`, `.shp`, `.geojson`).
+- **Общая маска валидности**: Строгое временное пересечение валидных пикселей без NoData (`valid2015 AND valid2025`).
+- **Классификация состояния и изменений**: Выделение 5 категорий состояния растительного покрова и дифференциальный анализ динамики ($\Delta\text{NDVI}$).
+- **Сценарный пространственный прогноз**: Гибридная модель на основе марковских матриц переходов (CA-Markov), автоматической кластеризации полигонов изменений и адаптивных поверхностей влияния с пространственным затуханием (distance decay).
+- **Научный стиль картографии**: Автономная генерация карт высокого разрешения (300 DPI, масштабы, северная стрелка, устойчивая процентильная растяжка легенды).
+- **Автоматизация отчетов**: Автоматическое формирование сводных аналитических таблиц в Excel (`.xlsx`) и официального отчета в Word (`.docx`).
+- **Два режима работы**: Графический интерфейс на Tkinter и консольный конвейер (CLI).
+
+---
+
+## Архитектура конвейера обработки
 
 ```text
-       Sentinel-2 Bands / Pre-computed NDVI
+      Каналы Sentinel-2 / Готовые растры NDVI
                          │
                          ▼
                    [1. Loader]
-            (Metadata & CRS Validation)
+       (Проверка метаданных, NoData и CRS)
                          │
                          ▼
                 [2. Raster Align]
-        (Reprojection, Snap-to-Grid, Crop)
+        (Перепроецирование, сетка, обрезка)
                          │
                          ▼
              [3. NDVI & Common Mask]
-        (NIR-RED / NIR+RED & Temporal Mask)
+       (Расчет индекса и единая маска дат)
                          │
                          ▼
                [4. Classification]
-        (5-Class Vegetation Canopy Tiers)
+        (Категоризация 5 классов покрова)
                          │
                          ▼
               [5. Change Detection]
-        (Delta NDVI & Polygonization)
+       (Delta NDVI и полигонизация очагов)
                          │
                          ▼
                 [6. Statistics]
-       (Transition Matrix & Area Accounting)
+       (Матрица переходов и баланс площадей)
                          │
                          ▼
                  [7. Forecasting]
-        (Markov Quotas & Spatial Influence)
+        (Марковские квоты и радиус влияния)
                          │
                          ▼
               [8. Reports & Visuals]
-        (GeoTIFF, PNG Maps, Excel, Word)
+         (GeoTIFF, PNG-карты, Excel, Word)
 ```
 
 ---
 
-## Tech Stack
+## Стек технологий
 
-| Category | Libraries / Tools |
+| Категория | Библиотеки и инструменты |
 | :--- | :--- |
-| **GIS & Geodata** | `rasterio`, `geopandas`, `shapely`, `pyproj`, `pyogrio` |
-| **Data Processing & ML** | `numpy`, `pandas`, `scipy` |
-| **Visuals & Cartography**| `matplotlib` |
-| **Report Automation** | `openpyxl`, `python-docx` |
-| **UI & CLI** | `tkinter`, `argparse`, `tqdm` |
+| **ГИС и геоданные** | `rasterio`, `geopandas`, `shapely`, `pyproj`, `pyogrio` |
+| **Анализ данных и вычисления** | `numpy`, `pandas`, `scipy` |
+| **Картография и визуализация** | `matplotlib` |
+| **Генерация отчетов** | `openpyxl`, `python-docx` |
+| **Интерфейс и CLI** | `tkinter`, `argparse`, `tqdm` |
 
 ---
 
-## Case Study
+## Территория исследования (Case Study)
 
-**Study Area**: Primorsky District, Saint Petersburg
+**Район исследования**: Приморский район Санкт-Петербурга
 
-- **Area**: 109.87 km²
-- **Population**: ~715,000 residents
-- **Observation Period**: 2015 – 2025 (Forecast to 2035)
-- **Data Source**: Sentinel-2 (L2A Bottom-Of-Atmosphere reflectance)
-- **Target Spatial Resolution**: 10 m / pixel
+- **Площадь**: 109.87 км²
+- **Население**: ~715,000 жителей
+- **Период мониторинга**: 2015 – 2025 гг. (прогноз на 2035 г.)
+- **Источник данных**: Спутниковые снимки Sentinel-2 (уровень L2A, атмосферная коррекция BOA)
+- **Целевое пространственное разрешение**: 10 м / пиксель
 
-### Typical Vegetation Class Distribution
+### Шкала классов NDVI
 
-| Class ID | NDVI Range | Description | Typical Land Cover |
+| Класс | Интервал NDVI | Категория | Типичный покров |
 | :---: | :---: | :--- | :--- |
-| **1** | $< 0.10$ | Водные объекты и открытый грунт | Water bodies, quarries, bare soil |
-| **2** | $0.10 - 0.25$ | Искусственные покрытия / застройка | Impervious surfaces, dense urban built-up |
-| **3** | $0.25 - 0.45$ | Разреженная / нарушенная растительность | Sparse lawns, disturbed soil, ruderal vegetation |
-| **4** | $0.45 - 0.65$ | Умеренная растительность | Urban parks, residential greenery, shrubs |
-| **5** | $> 0.65$ | Плотный здоровый древостой | Dense forest tracts, protected conservation areas |
+| **1** | $< 0.10$ | Водные объекты и открытый грунт | Акватории, карьеры, обнаженная почва |
+| **2** | $0.10 - 0.25$ | Искусственные покрытия / застройка | Плотная городская застройка, асфальт |
+| **3** | $0.25 - 0.45$ | Разреженная / нарушенная растительность | Газоны, нарушенные участки, пустыри |
+| **4** | $0.45 - 0.65$ | Умеренная растительность | Скверы, парки, придомовое озеленение |
+| **5** | $> 0.65$ | Плотный здоровый древостой | Лесопарковые массивы, ООПТ |
 
 ---
 
-## Quick Start
+## Быстрый старт
 
-### Installation
+### Установка
 
 ```bash
 git clone https://github.com/MOneK292/NDVI_monitor.git
@@ -126,50 +130,50 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-*Requirements: Python 3.12 (64-bit recommended).*
+*Рекомендуется версия Python 3.12 (64-bit).*
 
-### Running the Pipeline
+### Запуск
 
-**1. Graphical Interface (GUI):**
+**1. Графический интерфейс (GUI):**
 ```bash
 python main.py --gui
 ```
 
-**2. CLI Pipeline:**
+**2. Консольный конвейер (CLI):**
 ```bash
 python main.py --input ./input
 ```
 
-**3. Acceptance Verification Test:**
+**3. Приемочная верификация конвейера:**
 ```bash
 python verify_pipeline.py
 ```
 
 ---
 
-## Input Data Layout
+## Структура входных данных
 
-Place input files into the `input/` folder:
+Поместите файлы в каталог `input/`:
 
-- **1 Vector boundary**: `*.gpkg`, `*.shp`, or `*.geojson` (sample included: `input/Primorsky.gpkg`).
-- **Sentinel-2 Bands (Option 1)**:
+- **Ровно один векторный файл границы**: `*.gpkg`, `*.shp` или `*.geojson` (в репозиторий включен образец: `input/Primorsky.gpkg`).
+- **Каналы Sentinel-2 (Вариант 1)**:
   - `B04_2015.tif`, `B08_2015.tif`
   - `B04_2025.tif`, `B08_2025.tif`
-- **Or Pre-calculated NDVI (Option 2)**:
+- **Или готовые растры NDVI (Вариант 2)**:
   - `ndvi2015.tif`, `ndvi2025.tif`
 
 ---
 
-## Output Structure
+## Результаты работы
 
-All outputs are saved to `output/`:
-- `output/rasters/` — GeoTIFFs (aligned NDVI, valid mask, delta NDVI, forecast, and `change_polygons.gpkg`).
-- `output/figures/` — High-resolution 300 DPI publication-ready PNG maps and charts.
-- `output/tables/` — Excel summary reports, transition matrices, and largest change rankings.
-- `output/reports/` — Formal Word report (`ndvi_monitor_report.docx`).
+Все результаты сохраняются в папку `output/`:
+- `output/rasters/` — GeoTIFF (выровненные NDVI, единая маска, Delta NDVI, прогноз и вектор `change_polygons.gpkg`).
+- `output/figures/` — Готовые публикации карты и диаграммы в формате PNG (300 DPI).
+- `output/tables/` — Сводные таблицы в Excel, матрицы переходов классов и реестр участков изменений.
+- `output/reports/` — Итоговый аналитический отчет в формате Word (`ndvi_monitor_report.docx`).
 
 ---
 
-## License
+## Лицензия
 
-This project is open source and available under the terms of the [MIT License](LICENSE).
+Проект распространяется под открытой лицензией [MIT License](LICENSE).
