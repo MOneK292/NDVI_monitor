@@ -1,0 +1,12 @@
+rasterio==1.4.3
+numpy==2.2.1
+pandas==2.2.3
+matplotlib==3.10.0
+scipy==1.15.1
+openpyxl==3.1.5
+geopandas==1.0.1
+pyogrio==0.10.0
+shapely==2.0.6
+pyproj==3.7.0
+tqdm==4.67.1
+python-docx==1.1.2

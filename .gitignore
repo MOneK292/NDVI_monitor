@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# IDE & OS
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Heavy GeoTIFFs (keep vector boundaries like *.gpkg, *.geojson, *.shp)
+input/*.tif
+input/*.TIF
+input/*.tiff
+input/*.TIFF
+input/*.zip
+input/*.tar.gz
+
+# Runtime outputs (keep directory structure via .gitkeep)
+output/*
+!output/.gitkeep
+output/rasters/*
+output/figures/*
+output/tables/*
+output/reports/*
+
+# Logs
+logs/*
+!logs/.gitkeep
+*.log
+
+# Internal tools & backups
+backup/
+.agents/
