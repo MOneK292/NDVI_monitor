@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1d16"/>
+      <stop offset="100%" stop-color="#05100c"/>
+    </linearGradient>
+    <linearGradient id="layerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#143628"/>
+      <stop offset="100%" stop-color="#0a1f17"/>
+    </linearGradient>
+    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1b4332"/>
+      <stop offset="100%" stop-color="#0d281e"/>
+    </linearGradient>
+    <linearGradient id="coreGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2d6a4f"/>
+      <stop offset="100%" stop-color="#1b4332"/>
+    </linearGradient>
+    <filter id="shadow2" x="-5%" y="-10%" width="110%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#52b788"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="480" rx="12" fill="url(#bgGrad2)" stroke="#2d6a4f" stroke-width="1.5"/>
+  <text x="30" y="32" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="13" font-weight="700" fill="#52b788" letter-spacing="1">SYSTEM ARCHITECTURE</text>
+
+  <!-- Entry Layer (GUI & CLI) -->
+  <rect x="30" y="55" width="840" height="80" rx="8" fill="url(#layerGrad)" stroke="#2d6a4f" stroke-dasharray="4,4"/>
+  <text x="45" y="75" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="700" fill="#74c69d">ENTRY POINTS</text>
+
+  <g transform="translate(160, 75)" filter="url(#shadow2)">
+    <rect width="240" height="45" rx="6" fill="url(#boxGrad)" stroke="#52b788" stroke-width="1.2"/>
+    <text x="120" y="27" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="13" font-weight="600" fill="#e9f5ed" text-anchor="middle">GUI (Tkinter) • modules/gui.py</text>
+  </g>
+
+  <g transform="translate(500, 75)" filter="url(#shadow2)">
+    <rect width="240" height="45" rx="6" fill="url(#boxGrad)" stroke="#52b788" stroke-width="1.2"/>
+    <text x="120" y="27" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="13" font-weight="600" fill="#e9f5ed" text-anchor="middle">CLI (argparse) • main.py</text>
+  </g>
+
+  <!-- Flow to Pipeline -->
+  <line x1="280" y1="120" x2="450" y2="165" stroke="#52b788" stroke-width="2" marker-end="url(#arrow2)"/>
+  <line x1="620" y1="120" x2="450" y2="165" stroke="#52b788" stroke-width="2" marker-end="url(#arrow2)"/>
+
+  <!-- Core Layer (Pipeline Orchestrator) -->
+  <g transform="translate(200, 168)" filter="url(#shadow2)">
+    <rect width="500" height="50" rx="8" fill="url(#coreGrad)" stroke="#74c69d" stroke-width="1.5"/>
+    <text x="250" y="25" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">Pipeline Orchestrator</text>
+    <text x="250" y="40" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="11" fill="#b7e4c7" text-anchor="middle">modules/pipeline.py • MonitorPipeline</text>
+  </g>
+
+  <!-- Flow to Modules -->
+  <line x1="450" y1="218" x2="450" y2="250" stroke="#52b788" stroke-width="2" marker-end="url(#arrow2)"/>
+
+  <!-- Modules Layer -->
+  <rect x="30" y="255" width="840" height="200" rx="8" fill="url(#layerGrad)" stroke="#2d6a4f" stroke-dasharray="4,4"/>
+  <text x="45" y="275" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="700" fill="#74c69d">DOMAIN MODULES (modules/)</text>
+
+  <!-- Row 1 of modules -->
+  <g transform="translate(50, 290)" filter="url(#shadow2)">
+    <rect width="140" height="58" rx="6" fill="url(#boxGrad)" stroke="#40916c"/>
+    <text x="70" y="25" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="12" font-weight="700" fill="#d8f3dc" text-anchor="middle">loader.py</text>
+    <text x="70" y="42" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="9" fill="#95d5b2" text-anchor="middle">Discovery &amp; Check</text>
+  </g>
+
+  <g transform="translate(210, 290)" filter="url(#shadow2)">
+    <rect width="140" height="58" rx="6" fill="url(#boxGrad)" stroke="#40916c"/>
+    <text x="70" y="25" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="12" font-weight="700" fill="#d8f3dc" text-anchor="middle">align.py</text>
+    <text x="70" y="42" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="9" fill="#95d5b2" text-anchor="middle">Reproject &amp; Grid</text>
+  </g>
+
+  <g transform="translate(370, 290)" filter="url(#shadow2)">
+    <rect width="140" height="58" rx="6" fill="url(#boxGrad)" stroke="#40916c"/>
+    <text x="70" y="25" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="12" font-weight="700" fill="#d8f3dc" text-anchor="middle">ndvi.py &amp; mask.py</text>
+    <text x="70" y="42" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="9" fill="#95d5b2" text-anchor="middle">Math &amp; Multi-Mask</text>
+  </g>
+
+  <g transform="translate(530, 290)" filter="url(#shadow2)">
+    <rect width="140" height="58" rx="6" fill="url(#boxGrad)" stroke="#40916c"/>
+    <text x="70" y="25" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="12" font-weight="700" fill="#d8f3dc" text-anchor="middle">classify.py</text>
+    <text x="70" y="42" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="9" fill="#95d5b2" text-anchor="middle">Threshold Rules</text>
+  </g>
+
+  <g transform="translate(690, 290)" filter="url(#shadow2)">
+    <rect width="160" height="58" rx="6" fill="url(#boxGrad)" stroke="#40916c"/>
+    <text x="80" y="25" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="12" font-weight="700" fill="#d8f3dc" text-anchor="middle">changes.py &amp; delta.py</text>
+    <text x="80" y="42" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="9" fill="#95d5b2" text-anchor="middle">Polygonize Dynamics</text>
+  </g>
+
+  <!-- Row 2 of modules -->
+  <g transform="translate(130, 370)" filter="url(#shadow2)">
+    <rect width="170" height="58" rx="6" fill="url(#boxGrad)" stroke="#40916c"/>
+    <text x="85" y="25" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="12" font-weight="700" fill="#d8f3dc" text-anchor="middle">statistics.py</text>
+    <text x="85" y="42" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="9" fill="#95d5b2" text-anchor="middle">Markov Matrix &amp; Areas</text>
+  </g>
+
+  <g transform="translate(330, 370)" filter="url(#shadow2)">
+    <rect width="220" height="58" rx="6" fill="url(#boxGrad)" stroke="#40916c"/>
+    <text x="110" y="25" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="12" font-weight="700" fill="#d8f3dc" text-anchor="middle">forecast.py</text>
+    <text x="110" y="42" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="9" fill="#95d5b2" text-anchor="middle">CA-Markov &amp; Cluster Modeling</text>
+  </g>
+
+  <g transform="translate(580, 370)" filter="url(#shadow2)">
+    <rect width="190" height="58" rx="6" fill="url(#boxGrad)" stroke="#40916c"/>
+    <text x="95" y="25" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="12" font-weight="700" fill="#d8f3dc" text-anchor="middle">visualization.py</text>
+    <text x="95" y="42" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="9" fill="#95d5b2" text-anchor="middle">Publication Maps (PNG)</text>
+  </g>
+
+  <g transform="translate(45, 432)">
+    <text x="0" y="0" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="10" fill="#74c69d">Reporting modules: export_excel.py (OpenPyXL) • report.py (python-docx) • utils.py (I/O &amp; Logging)</text>
+  </g>
+</svg>

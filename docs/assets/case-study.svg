@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1d16"/>
+      <stop offset="100%" stop-color="#040d0a"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#143628"/>
+      <stop offset="100%" stop-color="#0a1f17"/>
+    </linearGradient>
+    <filter id="shadow3" x="-5%" y="-10%" width="110%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="760" height="380" rx="12" fill="url(#bgGrad3)" stroke="#2d6a4f" stroke-width="1.5"/>
+
+  <!-- Title & Subtitle -->
+  <text x="35" y="42" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="13" font-weight="700" fill="#52b788" letter-spacing="1">STUDY AREA SUMMARY</text>
+  <text x="35" y="70" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="20" font-weight="700" fill="#ffffff">Primorsky District, Saint Petersburg</text>
+  <text x="35" y="92" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="12" fill="#95d5b2">North-Western Maritime Urban District • Green Infrastructure Monitoring</text>
+
+  <!-- Metric Card 1: Area -->
+  <g transform="translate(35, 120)" filter="url(#shadow3)">
+    <rect width="210" height="100" rx="8" fill="url(#cardGrad)" stroke="#40916c" stroke-width="1.2"/>
+    <text x="20" y="32" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="600" fill="#74c69d">TOTAL AREA</text>
+    <text x="20" y="65" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="24" font-weight="800" fill="#ffffff">109.87 <tspan font-size="14" font-weight="500" fill="#b7e4c7">km²</tspan></text>
+    <text x="20" y="85" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="10" fill="#95d5b2">10,987 hectares</text>
+  </g>
+
+  <!-- Metric Card 2: Population -->
+  <g transform="translate(275, 120)" filter="url(#shadow3)">
+    <rect width="210" height="100" rx="8" fill="url(#cardGrad)" stroke="#40916c" stroke-width="1.2"/>
+    <text x="20" y="32" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="600" fill="#74c69d">POPULATION</text>
+    <text x="20" y="65" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="24" font-weight="800" fill="#ffffff">714,854</text>
+    <text x="20" y="85" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="10" fill="#95d5b2">Most populous SPb district</text>
+  </g>
+
+  <!-- Metric Card 3: Observation Period -->
+  <g transform="translate(515, 120)" filter="url(#shadow3)">
+    <rect width="210" height="100" rx="8" fill="url(#cardGrad)" stroke="#40916c" stroke-width="1.2"/>
+    <text x="20" y="32" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="600" fill="#74c69d">MONITORING TIMELINE</text>
+    <text x="20" y="65" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="24" font-weight="800" fill="#ffffff">2015 – 2025</text>
+    <text x="20" y="85" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="10" fill="#52b788">Forecast Target: 2035</text>
+  </g>
+
+  <!-- Metric Card 4: Satellite Data Source -->
+  <g transform="translate(35, 240)" filter="url(#shadow3)">
+    <rect width="330" height="100" rx="8" fill="url(#cardGrad)" stroke="#40916c" stroke-width="1.2"/>
+    <text x="20" y="32" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="600" fill="#74c69d">DATA SOURCE &amp; LEVEL</text>
+    <text x="20" y="65" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="20" font-weight="700" fill="#ffffff">Sentinel-2 (MSI)</text>
+    <text x="20" y="85" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="10" fill="#95d5b2">L2A Bottom-Of-Atmosphere (BOA) Reflectance</text>
+  </g>
+
+  <!-- Metric Card 5: Spatial Resolution -->
+  <g transform="translate(395, 240)" filter="url(#shadow3)">
+    <rect width="330" height="100" rx="8" fill="url(#cardGrad)" stroke="#40916c" stroke-width="1.2"/>
+    <text x="20" y="32" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="600" fill="#74c69d">SPATIAL RESOLUTION &amp; CRS</text>
+    <text x="20" y="65" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="20" font-weight="700" fill="#ffffff">10 m <tspan font-size="14" font-weight="400" fill="#b7e4c7">• EPSG:32636</tspan></text>
+    <text x="20" y="85" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="10" fill="#95d5b2">UTM Zone 36N Projection • Fixed (0,0) Origin</text>
+  </g>
+</svg>

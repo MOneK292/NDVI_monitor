@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1d16"/>
+      <stop offset="100%" stop-color="#040d0a"/>
+    </linearGradient>
+    <linearGradient id="barWater" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1f78b4"/>
+      <stop offset="100%" stop-color="#4ba3e3"/>
+    </linearGradient>
+    <linearGradient id="barUrban" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d8b365"/>
+      <stop offset="100%" stop-color="#f5d48b"/>
+    </linearGradient>
+    <linearGradient id="barVeg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2d6a4f"/>
+      <stop offset="100%" stop-color="#52b788"/>
+    </linearGradient>
+    <linearGradient id="barDense" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#084027"/>
+      <stop offset="100%" stop-color="#1b7a4d"/>
+    </linearGradient>
+    <filter id="shadow4" x="-5%" y="-10%" width="110%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="760" height="380" rx="12" fill="url(#bgGrad4)" stroke="#2d6a4f" stroke-width="1.5"/>
+
+  <!-- Title & Subtitle -->
+  <text x="35" y="40" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="13" font-weight="700" fill="#52b788" letter-spacing="1">KEY FINDINGS • LAND COVER DISTRIBUTION</text>
+  <text x="35" y="68" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="18" font-weight="700" fill="#ffffff">Vegetation Canopy &amp; Land Cover Breakdown (Total: 11,012 ha)</text>
+
+  <!-- Bar 1: Water -->
+  <g transform="translate(35, 95)">
+    <text x="0" y="16" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="13" font-weight="600" fill="#a5d8ff">Water Bodies</text>
+    <text x="680" y="16" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="end">381 ha <tspan font-size="11" font-weight="400" fill="#95d5b2">(3.5%)</tspan></text>
+    <rect x="0" y="24" width="680" height="18" rx="4" fill="#143628"/>
+    <rect x="0" y="24" width="24" height="18" rx="4" fill="url(#barWater)" filter="url(#shadow4)"/>
+  </g>
+
+  <!-- Bar 2: Built-up -->
+  <g transform="translate(35, 160)">
+    <text x="0" y="16" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="13" font-weight="600" fill="#ffe3a8">Built-up &amp; Impervious</text>
+    <text x="680" y="16" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="end">2,657 ha <tspan font-size="11" font-weight="400" fill="#95d5b2">(24.1%)</tspan></text>
+    <rect x="0" y="24" width="680" height="18" rx="4" fill="#143628"/>
+    <rect x="0" y="24" width="164" height="18" rx="4" fill="url(#barUrban)" filter="url(#shadow4)"/>
+  </g>
+
+  <!-- Bar 3: Vegetation -->
+  <g transform="translate(35, 225)">
+    <text x="0" y="16" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="13" font-weight="600" fill="#b7e4c7">Vegetation &amp; Green Spaces</text>
+    <text x="680" y="16" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="end">7,582 ha <tspan font-size="11" font-weight="400" fill="#95d5b2">(68.9%)</tspan></text>
+    <rect x="0" y="24" width="680" height="18" rx="4" fill="#143628"/>
+    <rect x="0" y="24" width="468" height="18" rx="4" fill="url(#barVeg)" filter="url(#shadow4)"/>
+  </g>
+
+  <!-- Bar 4: Dense Vegetation -->
+  <g transform="translate(35, 290)">
+    <text x="0" y="16" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="13" font-weight="600" fill="#74c69d">Dense Forest Canopy (NDVI &gt; 0.65)</text>
+    <text x="680" y="16" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="end">392 ha <tspan font-size="11" font-weight="400" fill="#95d5b2">(3.5%)</tspan></text>
+    <rect x="0" y="24" width="680" height="18" rx="4" fill="#143628"/>
+    <rect x="0" y="24" width="25" height="18" rx="4" fill="url(#barDense)" filter="url(#shadow4)"/>
+  </g>
+
+  <text x="35" y="360" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="11" fill="#74c69d">Vegetation covers 72.4% of the district, with green infrastructure predominantly concentrated in parklands and buffer zones.</text>
+</svg>

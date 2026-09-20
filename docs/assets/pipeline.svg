@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 160" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1d16"/>
+      <stop offset="100%" stop-color="#05100c"/>
+    </linearGradient>
+    <linearGradient id="nodeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1b4332"/>
+      <stop offset="100%" stop-color="#0d281e"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2d6a4f"/>
+      <stop offset="100%" stop-color="#1b4332"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-10%" width="110%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#52b788"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="160" rx="12" fill="url(#bgGrad)" stroke="#2d6a4f" stroke-width="1.5"/>
+
+  <!-- Stage 1: Sentinel-2 -->
+  <g transform="translate(25, 45)" filter="url(#shadow)">
+    <rect width="90" height="70" rx="8" fill="url(#accentGrad)" stroke="#52b788" stroke-width="1.5"/>
+    <text x="45" y="32" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="700" fill="#d8f3dc" text-anchor="middle">Sentinel-2</text>
+    <text x="45" y="48" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="9" fill="#95d5b2" text-anchor="middle">B04 / B08</text>
+  </g>
+  <line x1="117" y1="80" x2="137" y2="80" stroke="#52b788" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 2: Loader -->
+  <g transform="translate(142, 45)" filter="url(#shadow)">
+    <rect width="88" height="70" rx="8" fill="url(#nodeGrad)" stroke="#40916c" stroke-width="1.2"/>
+    <text x="44" y="32" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="600" fill="#e9f5ed" text-anchor="middle">Loader</text>
+    <text x="44" y="48" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="9" fill="#74c69d" text-anchor="middle">Validation</text>
+  </g>
+  <line x1="232" y1="80" x2="252" y2="80" stroke="#52b788" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 3: Align -->
+  <g transform="translate(257, 45)" filter="url(#shadow)">
+    <rect width="88" height="70" rx="8" fill="url(#nodeGrad)" stroke="#40916c" stroke-width="1.2"/>
+    <text x="44" y="32" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="600" fill="#e9f5ed" text-anchor="middle">Align</text>
+    <text x="44" y="48" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="9" fill="#74c69d" text-anchor="middle">Snap &amp; Crop</text>
+  </g>
+  <line x1="347" y1="80" x2="367" y2="80" stroke="#52b788" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 4: NDVI -->
+  <g transform="translate(372, 45)" filter="url(#shadow)">
+    <rect width="88" height="70" rx="8" fill="url(#accentGrad)" stroke="#52b788" stroke-width="1.5"/>
+    <text x="44" y="32" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="700" fill="#d8f3dc" text-anchor="middle">NDVI</text>
+    <text x="44" y="48" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="9" fill="#95d5b2" text-anchor="middle">Mask 15&amp;25</text>
+  </g>
+  <line x1="462" y1="80" x2="482" y2="80" stroke="#52b788" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 5: Classification -->
+  <g transform="translate(487, 45)" filter="url(#shadow)">
+    <rect width="98" height="70" rx="8" fill="url(#nodeGrad)" stroke="#40916c" stroke-width="1.2"/>
+    <text x="49" y="32" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="600" fill="#e9f5ed" text-anchor="middle">Classification</text>
+    <text x="49" y="48" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="9" fill="#74c69d" text-anchor="middle">5 Canopy Tiers</text>
+  </g>
+  <line x1="587" y1="80" x2="607" y2="80" stroke="#52b788" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 6: Change Detection -->
+  <g transform="translate(612, 45)" filter="url(#shadow)">
+    <rect width="108" height="70" rx="8" fill="url(#nodeGrad)" stroke="#40916c" stroke-width="1.2"/>
+    <text x="54" y="32" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="600" fill="#e9f5ed" text-anchor="middle">Change Detection</text>
+    <text x="54" y="48" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="9" fill="#74c69d" text-anchor="middle">Delta &amp; Polygons</text>
+  </g>
+  <line x1="722" y1="80" x2="742" y2="80" stroke="#52b788" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 7: Statistics -->
+  <g transform="translate(747, 45)" filter="url(#shadow)">
+    <rect width="88" height="70" rx="8" fill="url(#nodeGrad)" stroke="#40916c" stroke-width="1.2"/>
+    <text x="44" y="32" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="600" fill="#e9f5ed" text-anchor="middle">Statistics</text>
+    <text x="44" y="48" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="9" fill="#74c69d" text-anchor="middle">Transitions</text>
+  </g>
+  <line x1="837" y1="80" x2="857" y2="80" stroke="#52b788" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 8: Forecast -->
+  <g transform="translate(862, 45)" filter="url(#shadow)">
+    <rect width="92" height="70" rx="8" fill="url(#nodeGrad)" stroke="#40916c" stroke-width="1.2"/>
+    <text x="46" y="32" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="600" fill="#e9f5ed" text-anchor="middle">Forecast</text>
+    <text x="46" y="48" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="9" fill="#74c69d" text-anchor="middle">Markov &amp; Decay</text>
+  </g>
+  <line x1="956" y1="80" x2="976" y2="80" stroke="#52b788" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Stage 9: Reports -->
+  <g transform="translate(981, 45)" filter="url(#shadow)">
+    <rect width="94" height="70" rx="8" fill="url(#accentGrad)" stroke="#52b788" stroke-width="1.5"/>
+    <text x="47" y="32" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="11" font-weight="700" fill="#d8f3dc" text-anchor="middle">Reports</text>
+    <text x="47" y="48" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="9" fill="#95d5b2" text-anchor="middle">Maps / DOCX / XLSX</text>
+  </g>
+
+  <!-- Title bar -->
+  <text x="25" y="24" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif" font-size="12" font-weight="700" fill="#52b788" letter-spacing="1">PROCESSING PIPELINE WORKFLOW</text>
+</svg>
